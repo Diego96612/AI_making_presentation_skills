@@ -1,38 +1,49 @@
-# Reduce-token-usage-when-making-presentations
+# AI Making Presentation Skills
 
-簡報節省 token 方法：給 Claude Code 使用的兩份指令（prompt）。
+用 AI 做簡報的工具包：省 token 的 Claude Code 指令、可直接套用的簡報模板，以及整理好的簡報設計原則。
 
-| 檔案 | 用途 |
-|---|---|
-| [`prompts/canva-edit.md`](prompts/canva-edit.md) | 透過 Canva MCP 修改**既有**的 Canva 簡報（不會新建設計） |
-| [`prompts/pptx-create-edit.md`](prompts/pptx-create-edit.md) | 用 python-pptx 修改 pptx；沒有檔案時自動新建 |
+![簡報模板預覽](template/preview.jpg)
 
-兩份都是全自動執行、必做一次視覺檢查，並以最少 token 為目標。
+## 內容
 
-## 使用方式
+```
+├── prompts/                         給 Claude Code 的簡報指令
+│   ├── canva-edit.md                修改現有的 Canva 簡報
+│   └── pptx-create-edit.md          建立或修改 pptx 檔
+├── template/                        簡報模板
+│   ├── presentation-template.pptx   15 種版型，文字已換成填寫提示
+│   └── preview.jpg                  模板預覽圖
+└── guides/                          簡報設計參考
+    ├── design-research.md           什麼是好的簡報（附資料來源）
+    └── good-presentation-checklist.md  好簡報的 49 個檢查點
+```
 
-1. 開一個新的 Claude Code 對話。
-2. 複製整份指令貼上，只修改最下面的 `<request>` 區塊（可以寫中文）。
-3. 長期使用的話，把 `<request>` 以外的部分存成專案的 `CLAUDE.md`，之後每次只傳 `<request>` 即可。
+| 資料夾 | 說明 | 適合誰 |
+|---|---|---|
+| [`prompts/`](prompts/) | 兩份讓 Claude Code 自動做簡報的指令，以最少 token 為目標，並內建一次視覺檢查。 | 想用 AI 自動產出或修改簡報的人 |
+| [`template/`](template/) | 從實際提案簡報整理出的模板，暖色系、16:9，包含封面、數據、比較表、流程、時程、團隊、結論等 15 種版型。 | 想快速做出一份好看簡報的人 |
+| [`guides/`](guides/) | 整理學術期刊與設計資源的建議，以及 49 個可逐項檢查的重點。 | 想知道怎樣才算好簡報的人 |
 
-## 省 token 的主要做法
+## 快速開始
 
-- **只讀需要的資料**：只讀要修改的頁面；Canva 讀取時不帶縮圖，pptx 不解壓、不讀 XML。
-- **合併操作**：Canva 每頁只呼叫一次 `edit-design`；pptx 所有修改合成一支腳本只跑一次。
-- **低成本視覺檢查**：Canva 直接用 `edit-design` 回傳的縮圖；pptx 只渲染改過的頁面，拼成一張低解析度縮圖格。只檢查一次、修正一次。
-- **不來回詢問**：對應不明確時自行判斷，在回報中列出「自行判斷的地方」。
-- **工具重複使用**：pptx 的 `pptx_dump.py`、`pptx_preview.py` 寫一次存在 `./tools/`，之後直接重用。
-- **精簡輸出**：不解說步驟、不複述需求、不貼腳本，只回報固定幾項結果。
+**用模板手動製作**
 
-## 前置需求
+1. 下載 [`template/presentation-template.pptx`](template/presentation-template.pptx)。
+2. 依內容挑選版型，把提示文字換成自己的內容。
+3. 完成後對照 [49 個檢查點](guides/good-presentation-checklist.md) 檢查一遍。
 
-- **Canva 版**：Claude Code 已連接 Canva MCP
-  ```
-  claude mcp add --transport http canva https://mcp.canva.com/mcp
-  ```
-  之後在 Claude Code 輸入 `/mcp` 登入授權。
-- **pptx 版**：Python；視覺檢查需要本機安裝 LibreOffice（沒有會跳過並在回報註明）。
+**讓 AI 自動製作或修改**
 
-## 注意
+1. 依情況選擇 [Canva 版或 pptx 版指令](prompts/)。
+2. 開一個新的 Claude Code 對話，貼上指令，只填寫最下面的 `<request>` 區塊。
+3. pptx 版可以在 `<request>` 的 `FILE` 填入模板路徑，讓 AI 在模板上修改。
 
-Canva 的 `edit-design` 工具說明要求存檔前取得使用者同意。指令中已寫明「預先授權」，但 Claude 仍可能停下來詢問一次，直接同意即可。
+## 三個最重要的原則
+
+如果只記得三件事：
+
+1. **每頁只講一個重點**，觀眾要能在 3 秒內看懂。
+2. **標題直接寫結論**，例如「循環杯減量效果最好」，而不是「方案比較」。
+3. **少即是多**：2～3 種顏色、最多 2 種字型、條列最多 5 點，並保留足夠留白。
+
+完整說明請見 [`guides/`](guides/)。
