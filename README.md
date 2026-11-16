@@ -7,7 +7,8 @@
 ## 內容
 
 ```
-├── prompts/                         給 Claude Code 的簡報指令
+├── prompts/                         給 Claude Code 的設定與簡報指令
+│   ├── CLAUDE.md                    使用者層級的全域設定（含辦公檔案省 token 規則）
 │   ├── canva-edit.md                修改現有的 Canva 簡報
 │   └── pptx-create-edit.md          建立或修改 pptx 檔
 ├── template/                        簡報模板
@@ -20,7 +21,7 @@
 
 | 資料夾 | 說明 | 適合誰 |
 |---|---|---|
-| [`prompts/`](prompts/) | 兩份讓 Claude Code 自動做簡報的指令，以最少 token 為目標，並內建一次視覺檢查。 | 想用 AI 自動產出或修改簡報的人 |
+| [`prompts/`](prompts/) | 一份全域 `CLAUDE.md`，加上兩份讓 Claude Code 自動做簡報的指令，以最少 token 為目標，並內建一次視覺檢查。 | 想用 AI 自動產出或修改簡報的人 |
 | [`template/`](template/) | 從實際提案簡報整理出的模板，暖色系、16:9，包含封面、數據、比較表、流程、時程、團隊、結論等 15 種版型。 | 想快速做出一份好看簡報的人 |
 | [`guides/`](guides/) | 整理學術期刊與設計資源的建議，以及 49 個可逐項檢查的重點。 | 想知道怎樣才算好簡報的人 |
 
@@ -34,9 +35,10 @@
 
 **讓 AI 自動製作或修改**
 
-1. 依情況選擇 [Canva 版或 pptx 版指令](prompts/)。
-2. 開一個新的 Claude Code 對話，貼上指令，只填寫最下面的 `<request>` 區塊。
-3. pptx 版可以在 `<request>` 的 `FILE` 填入模板路徑，讓 AI 在模板上修改。
+1. （選用）把 [`prompts/CLAUDE.md`](prompts/CLAUDE.md) 放到 `~/.claude/CLAUDE.md`，當作全域設定。
+2. 依情況選擇 [Canva 版或 pptx 版指令](prompts/)。
+3. 開一個新的 Claude Code 對話，貼上指令，只填寫最下面的 `<request>` 區塊。
+4. pptx 版可以在 `<request>` 的 `FILE` 填入模板路徑，讓 AI 在模板上修改。
 
 ## 三個最重要的原則
 
