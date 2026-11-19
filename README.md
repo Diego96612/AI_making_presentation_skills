@@ -12,8 +12,11 @@
 │   ├── canva-edit.md                修改現有的 Canva 簡報
 │   └── pptx-create-edit.md          建立或修改 pptx 檔
 ├── template/                        簡報模板
-│   ├── presentation-template.pptx   15 種版型，文字已換成填寫提示
-│   └── preview.jpg                  模板預覽圖
+│   ├── presentation-template.pptx   暖色系模板，15 種版型
+│   ├── preview.jpg                  暖色系模板預覽圖
+│   ├── sticky-note-template.pptx    便利貼提案模板，18 種版型
+│   ├── sticky-note-preview.jpg      便利貼模板預覽圖
+│   └── build_sticky_note_template.py  產生便利貼模板的腳本
 └── guides/                          簡報設計參考
     ├── design-research.md           什麼是好的簡報（附資料來源）
     └── good-presentation-checklist.md  好簡報的 49 個檢查點
@@ -22,14 +25,14 @@
 | 資料夾 | 說明 | 適合誰 |
 |---|---|---|
 | [`prompts/`](prompts/) | 一份全域 `CLAUDE.md`，加上兩份讓 Claude Code 自動做簡報的指令，以最少 token 為目標，並內建一次視覺檢查。 | 想用 AI 自動產出或修改簡報的人 |
-| [`template/`](template/) | 從實際提案簡報整理出的模板，暖色系、16:9，包含封面、數據、比較表、流程、時程、團隊、結論等 15 種版型。 | 想快速做出一份好看簡報的人 |
+| [`template/`](template/) | 從實際提案簡報整理出的兩份模板，都是 16:9：暖色系模板有 15 種版型；便利貼提案模板有 18 種版型，包含漏斗圖、關係人表、指標、效益試算表與長條圖。 | 想快速做出一份好看簡報的人 |
 | [`guides/`](guides/) | 整理學術期刊與設計資源的建議，以及 49 個可逐項檢查的重點。 | 想知道怎樣才算好簡報的人 |
 
 ## 快速開始
 
 **用模板手動製作**
 
-1. 下載 [`template/presentation-template.pptx`](template/presentation-template.pptx)。
+1. 下載 [`template/presentation-template.pptx`](template/presentation-template.pptx)（暖色系）或 [`template/sticky-note-template.pptx`](template/sticky-note-template.pptx)（便利貼風格）。
 2. 依內容挑選版型，把提示文字換成自己的內容。
 3. 完成後對照 [49 個檢查點](guides/good-presentation-checklist.md) 檢查一遍。
 
